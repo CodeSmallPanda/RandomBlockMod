@@ -43,10 +43,9 @@ public class RandomBlockMod implements ModInitializer {
 		// 初始化保留的方块列表
 		initPreservedBlocks();
 
-		// 玩家加入游戏时清空他们的位置缓存
+		// 玩家加入游戏时获取uuid
 		ServerPlayConnectionEvents.JOIN.register((handler, sender, server) -> {
 			UUID playerId = handler.getPlayer().getUuid();
-			processedChunks.values().forEach(set -> set.remove(playerId));
 		});
 
 		// 服务器每tick处理区块队列
